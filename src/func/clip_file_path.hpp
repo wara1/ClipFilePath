@@ -18,7 +18,7 @@ class ClipFilePath
 
   /// @brief コンストラクタ
   /// @param[in] command_line_args コマンドライン引数
-  ClipFilePath(const std::vector<std::string>& command_line_args);
+  ClipFilePath(const std::vector<std::wstring>& command_line_args);
 
   /// @brief デストラクタ
   ~ClipFilePath();
@@ -30,19 +30,19 @@ class ClipFilePath
   Resutl Clipping() const;
 
  private:
-  static constexpr const char* const K_NEW_LINE_CODE = "\r\n";
+  static constexpr const wchar_t* const K_NEW_LINE_CODE = L"\r\n";
 
   /// @brief コマンドライン引数解析
   /// @param[in] command_line_args コマンドライン引数
   /// @return ファイルパス
-  std::unordered_multimap<std::string, std::string> AnalyseCommandLineArgs_(const std::vector<std::string>& command_line_args);
+  std::unordered_multimap<std::wstring, std::wstring> AnalyseCommandLineArgs_(const std::vector<std::wstring>& command_line_args);
 
   /// @brief クリップボードテキスト設定
   /// @param[in] text 設定するテキスト
   /// @return 結果
   /// @retval true 設定成功
   /// @retval false 設定失敗
-  bool SetClipboardText_(const std::string& text) const;
+  bool SetClipboardText_(const std::wstring& text) const;
 
   /// @briefテンプレート関数で任意のunordered_multimap型に対応
   /// @param[in] inputMap キー抽出対象の連想配列
@@ -60,5 +60,5 @@ class ClipFilePath
     return keys;
   }
 
-  const std::unordered_multimap<std::string, std::string> file_paths_;   //!< ファイルパス(パス,ファイル名[複数]の連想配列)
+  const std::unordered_multimap<std::wstring, std::wstring> file_paths_;   //!< ファイルパス(パス,ファイル名[複数]の連想配列)
 };

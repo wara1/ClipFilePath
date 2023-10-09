@@ -1,3 +1,4 @@
+#include <windows.h>
 #include <cstdint>
 #include <cstdlib>
 #include <vector>
@@ -6,15 +7,18 @@
 #include "clip_file_path.hpp"
 
 /// @brief コマンドラインパラメータ
-std::vector<std::string> K_COMMAND_LINE_ARGS;
+std::vector<std::wstring> K_COMMAND_LINE_ARGS;
 
 /// @brief メイン関数
 /// @return 実行結果
 /// @retval EXIT_SUCCESS 成功
 /// @retval EXIT_FAILURE 失敗
-int32_t main(const int32_t argc, const char const *argv[])
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
   int32_t ret = EXIT_SUCCESS;
+
+  int32_t argc = 0;
+  LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
 
   for (int32_t idx = 0; idx < argc; idx++)
   {
